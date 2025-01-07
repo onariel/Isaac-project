@@ -5,4 +5,6 @@ module isaac.isep.isaacproject {
 
     opens isaac.isep.isaacproject to javafx.fxml;
     exports isaac.isep.isaacproject;
+    exports isaac.isep.isaacproject.Controllers;
+    opens isaac.isep.isaacproject.Controllers to javafx.fxml;
 }

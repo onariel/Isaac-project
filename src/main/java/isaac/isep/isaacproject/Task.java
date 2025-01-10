@@ -15,9 +15,10 @@ public class Task {
     public ArrayList<Employee> employees;
     public ArrayList<String> comments;
     public Project project;
+    public float budget;
 
     //Constructor
-    public Task(int id, String name, String description, int priority, Date dueDate, Boolean status, Project project) {
+    public Task(int id, String name, String description, int priority, Date dueDate, Boolean status, Project project, float budget) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,6 +28,7 @@ public class Task {
         this.employees = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.project = project;
+        this.budget = budget;
         DataBaseManager.writeObjectToJson(this);
     }
 
@@ -121,5 +123,13 @@ public class Task {
 
     public void remove() {
         DataBaseManager.removeObjectFromJson(this);
+    }
+
+    public void setBudget(float budget) {
+        DataBaseManager.modifyObjectAttribute(this, "budget", budget);
+    }
+
+    public void getBudget() {
+        DataBaseManager.getSpecificAttribute(this, "budget");
     }
 }

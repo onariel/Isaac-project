@@ -15,9 +15,10 @@ public class Project {
     public ArrayList<Employee> employees;
     public ArrayList<Task> tasks;
     public Employee projectManager;
+    public float budget;
 
     //Constructor
-    public Project(int id, String name, String description, Date startDate, Date endDate, Boolean status, Employee projectManager) {
+    public Project(int id, String name, String description, Date startDate, Date endDate, Boolean status, Employee projectManager, float budget) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,6 +28,7 @@ public class Project {
         this.employees = new ArrayList<>();
         this.tasks = new ArrayList<>();
         this.projectManager = projectManager;
+        this.budget = budget;
         DataBaseManager.writeObjectToJson(this);
     }
 
@@ -121,5 +123,23 @@ public class Project {
 
     public void deleteProject() {
         DataBaseManager.removeObjectFromJson(this);
+    }
+
+    public void setProjectManager(Employee projectManager) {
+        this.projectManager = projectManager;
+        DataBaseManager.modifyObjectAttribute(this, "projectManager", this.projectManager);
+    }
+
+    public void setBudget(float budget) {
+        this.budget = budget;
+        DataBaseManager.modifyObjectAttribute(this, "budget", this.budget);
+    }
+
+    public void getProjectManager() {
+        DataBaseManager.getSpecificAttribute(this, "projectManager");
+    }
+
+    public void getBudget() {
+        DataBaseManager.getSpecificAttribute(this, "budget");
     }
 }

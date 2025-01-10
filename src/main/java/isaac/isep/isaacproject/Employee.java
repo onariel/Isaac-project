@@ -69,5 +69,11 @@ public class Employee {
         DataBaseManager.modifyObjectAttribute(this, "projects", projects);
     }
 
+    public void setPassword(String password) {
+        DataBaseManager.modifyObjectAttribute(this, "password", password);
+    }
 
+    public void getPassword() {
+        DataBaseManager.getSpecificAttribute(this, "password");
+    }
 }

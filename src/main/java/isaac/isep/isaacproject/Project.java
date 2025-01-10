@@ -14,9 +14,10 @@ public class Project {
     public Boolean status;
     public ArrayList<Employee> employees;
     public ArrayList<Task> tasks;
+    public Employee projectManager;
 
     //Constructor
-    public Project(int id, String name, String description, Date startDate, Date endDate, Boolean status) {
+    public Project(int id, String name, String description, Date startDate, Date endDate, Boolean status, Employee projectManager) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -25,6 +26,7 @@ public class Project {
         this.status = status;
         this.employees = new ArrayList<>();
         this.tasks = new ArrayList<>();
+        this.projectManager = projectManager;
         DataBaseManager.writeObjectToJson(this);
     }
 

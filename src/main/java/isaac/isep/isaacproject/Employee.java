@@ -6,18 +6,20 @@ import java.util.ArrayList;
 
 
 public class Employee {
-    private final int id;
-    private String name;
-    private String email;
-    private String role;
-    private ArrayList<Project> projects;
+    public int id;
+    public String name;
+    public String email;
+    public String role;
+    public String password;
+    public ArrayList<Project> projects;
 
     //Constructor
-    public Employee(int id, String name, String email, String role) {
+    public Employee(int id, String name, String email, String role, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.role = role;
+        this.password = password;
         this.projects = new ArrayList<>();
         DataBaseManager.writeObjectToJson(this);
     }

@@ -58,5 +58,10 @@ public class Initializer {
 
         Date dueDate24 = new Date(currentDate.getTime() + 1000 * 60 * 60 * 24 * 21);
         Task task24 = new Task(24, "Task24", "Description24", 3, (dueDate24), false, project2, 3875);
+
+        // Generate report
+        Report report = new Report();
+        report.generateBudgetReport(project0);
+        report.exportReportToPDF(report.generateProjectProgressReport(project0), "src/main/resources/test.pdf");
     }
 }

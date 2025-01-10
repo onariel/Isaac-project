@@ -28,118 +28,104 @@ public class Project {
         this.employees = new ArrayList<>();
         this.tasks = new ArrayList<>();
         this.projectManager = projectManager;
+        this.employees.add(projectManager);
         this.budget = budget;
-        DataBaseManager.writeObjectToJson(this);
     }
 
     //Getters and Setters
-    public void getId() {
-        DataBaseManager.getSpecificAttribute(this, "id");
+    public int getId() {
+        return id;
     }
 
-    public void getName() {
-        DataBaseManager.getSpecificAttribute(this, "name");
+    public String getName() {
+        return name;
     }
 
-    public void getDescription() {
-        DataBaseManager.getSpecificAttribute(this, "description");
+    public String getDescription() {
+        return description;
     }
 
-    public void getStartDate() {
-        DataBaseManager.getSpecificAttribute(this, "startDate");
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void getEndDate() {
-        DataBaseManager.getSpecificAttribute(this, "endDate");
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void getStatus() {
-        DataBaseManager.getSpecificAttribute(this, "status");
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void getEmployees() {
-        DataBaseManager.getSpecificAttribute(this, "employees");
+    public ArrayList<Employee> getEmployees() {
+        return employees;
     }
 
-    public void getTasks() {
-        DataBaseManager.getSpecificAttribute(this, "tasks");
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 
-    public void getAll() {
-        DataBaseManager.getAllAttributes(this);
+    public Employee getProjectManager() {
+        return projectManager;
+    }
+
+    public float getBudget() {
+        return budget;
     }
 
     public void setId(int id) {
-        DataBaseManager.modifyObjectAttribute(this, "id", id);
+        this.id = id;
     }
 
     public void setName(String name) {
-        DataBaseManager.modifyObjectAttribute(this, "name", name);
+        this.name = name;
     }
 
     public void setDescription(String description) {
-        DataBaseManager.modifyObjectAttribute(this, "description", description);
+        this.description = description;
     }
 
     public void setStartDate(Date startDate) {
-        DataBaseManager.modifyObjectAttribute(this, "startDate", startDate);
+        this.startDate = startDate;
     }
 
     public void setEndDate(Date endDate) {
-        DataBaseManager.modifyObjectAttribute(this, "endDate", endDate);
+        this.endDate = endDate;
     }
 
     public void setStatus(Boolean status) {
-        DataBaseManager.modifyObjectAttribute(this, "status", status);
+        this.status = status;
     }
 
     public void setEmployees(ArrayList<Employee> employees) {
-        DataBaseManager.modifyObjectAttribute(this, "employees", employees);
+        this.employees = employees;
     }
 
     public void setTasks(ArrayList<Task> tasks) {
-        DataBaseManager.modifyObjectAttribute(this, "tasks", tasks);
-    }
-
-    public void addEmployee(Employee employee) {
-        this.employees.add(employee);
-        DataBaseManager.modifyObjectAttribute(this, "employees", this.employees);
-    }
-
-    public void addTask(Task task) {
-        this.tasks.add(task);
-        DataBaseManager.modifyObjectAttribute(this, "tasks", this.tasks);
-    }
-
-    public void removeEmployee(Employee employee) {
-        this.employees.remove(employee);
-        DataBaseManager.modifyObjectAttribute(this, "employees", this.employees);
-    }
-
-    public void removeTask(Task task) {
-        this.tasks.remove(task);
-        DataBaseManager.modifyObjectAttribute(this, "tasks", this.tasks);
-    }
-
-    public void deleteProject() {
-        DataBaseManager.removeObjectFromJson(this);
+        this.tasks = tasks;
     }
 
     public void setProjectManager(Employee projectManager) {
         this.projectManager = projectManager;
-        DataBaseManager.modifyObjectAttribute(this, "projectManager", this.projectManager);
     }
 
     public void setBudget(float budget) {
         this.budget = budget;
-        DataBaseManager.modifyObjectAttribute(this, "budget", this.budget);
     }
 
-    public void getProjectManager() {
-        DataBaseManager.getSpecificAttribute(this, "projectManager");
+    public void addEmployee(Employee employee) {
+        this.employees.add(employee);
     }
 
-    public void getBudget() {
-        DataBaseManager.getSpecificAttribute(this, "budget");
+    public void addTask(Task task) {
+        this.tasks.add(task);
+    }
+
+    public void removeEmployee(Employee employee) {
+        this.employees.remove(employee);
+    }
+
+    public void removeTask(Task task) {
+        this.tasks.remove(task);
     }
 }

@@ -21,59 +21,50 @@ public class Employee {
         this.role = role;
         this.password = password;
         this.projects = new ArrayList<>();
-        DataBaseManager.writeObjectToJson(this);
     }
 
     //Getters and Setters
-    public void getId() {
-        DataBaseManager.getSpecificAttribute(this, "id");
+    public int getId() {
+        return id;
     }
 
-    public void getName() {
-        DataBaseManager.getSpecificAttribute(this, "name");
+    public String getName() {
+        return name;
     }
 
-    public void getEmail() {
-        DataBaseManager.getSpecificAttribute(this, "email");
+    public String getEmail() {
+        return email;
     }
 
-    public void getRole() {
-        DataBaseManager.getSpecificAttribute(this, "role");
+    public String getRole() {
+        return role;
     }
 
-    public void getProjects() {
-        DataBaseManager.getSpecificAttribute(this, "projects");
+    public String getPassword() {
+        return password;
     }
 
-    public void getAll() {
-        DataBaseManager.getAllAttributes(this);
+    public ArrayList<Project> getProjects() {
+        return projects;
     }
 
     public void setId(int id) {
-        DataBaseManager.modifyObjectAttribute(this, "id", id);
+        this.id = id;
     }
 
     public void setName(String name) {
-        DataBaseManager.modifyObjectAttribute(this, "name", name);
+        this.name = name;
     }
 
     public void setEmail(String email) {
-        DataBaseManager.modifyObjectAttribute(this, "email", email);
+        this.email = email;
     }
 
     public void setRole(String role) {
-        DataBaseManager.modifyObjectAttribute(this, "role", role);
-    }
-
-    public void setProjects(ArrayList<Project> projects) {
-        DataBaseManager.modifyObjectAttribute(this, "projects", projects);
+        this.role = role;
     }
 
     public void setPassword(String password) {
-        DataBaseManager.modifyObjectAttribute(this, "password", password);
-    }
-
-    public void getPassword() {
-        DataBaseManager.getSpecificAttribute(this, "password");
+        this.password = password;
     }
 }

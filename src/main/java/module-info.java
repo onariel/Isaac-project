@@ -2,6 +2,8 @@ module isaac.isep.isaacproject {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires layout;
+    requires kernel;
 
 
     opens isaac.isep.isaacproject to javafx.fxml;

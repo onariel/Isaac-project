@@ -29,107 +29,103 @@ public class Task {
         this.comments = new ArrayList<>();
         this.project = project;
         this.budget = budget;
-        DataBaseManager.writeObjectToJson(this);
+        this.project.addTask(this);
     }
 
     //Getters and Setters
-    public void getId() {
-        DataBaseManager.getSpecificAttribute(this, "id");
+    public int getId() {
+        return id;
     }
 
-    public void getName() {
-        DataBaseManager.getSpecificAttribute(this, "name");
+    public String getName() {
+        return name;
     }
 
-    public void getDescription() {
-        DataBaseManager.getSpecificAttribute(this, "description");
+    public String getDescription() {
+        return description;
     }
 
-    public void getPriority() {
-        DataBaseManager.getSpecificAttribute(this, "priority");
+    public int getPriority() {
+        return priority;
     }
 
-    public void getDueDate() {
-        DataBaseManager.getSpecificAttribute(this, "dueDate");
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    public void getStatus() {
-        DataBaseManager.getSpecificAttribute(this, "status");
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void getEmployees() {
-        DataBaseManager.getSpecificAttribute(this, "employees");
+    public ArrayList<Employee> getEmployees() {
+        return employees;
     }
 
-    public void getComments() {
-        DataBaseManager.getSpecificAttribute(this, "comments");
+    public ArrayList<String> getComments() {
+        return comments;
     }
 
-    public void getAll() {
-        DataBaseManager.getAllAttributes(this);
+    public Project getProject() {
+        return project;
+    }
+
+    public float getBudget() {
+        return budget;
     }
 
     public void setId(int id) {
-        DataBaseManager.modifyObjectAttribute(this, "id", id);
+        this.id = id;
     }
 
     public void setName(String name) {
-        DataBaseManager.modifyObjectAttribute(this, "name", name);
+        this.name = name;
     }
 
     public void setDescription(String description) {
-        DataBaseManager.modifyObjectAttribute(this, "description", description);
+        this.description = description;
     }
 
     public void setPriority(int priority) {
-        DataBaseManager.modifyObjectAttribute(this, "priority", priority);
+        this.priority = priority;
     }
 
     public void setDueDate(Date dueDate) {
-        DataBaseManager.modifyObjectAttribute(this, "dueDate", dueDate);
+        this.dueDate = dueDate;
     }
 
     public void setStatus(Boolean status) {
-        DataBaseManager.modifyObjectAttribute(this, "status", status);
+        this.status = status;
     }
 
     public void setEmployees(ArrayList<Employee> employees) {
-        DataBaseManager.modifyObjectAttribute(this, "employees", employees);
+        this.employees = employees;
     }
 
     public void setComments(ArrayList<String> comments) {
-        DataBaseManager.modifyObjectAttribute(this, "comments", comments);
+        this.comments = comments;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public void setBudget(float budget) {
+        this.budget = budget;
     }
 
     public void addEmployee(Employee employee) {
         this.employees.add(employee);
-        DataBaseManager.modifyObjectAttribute(this, "employees", this.employees);
     }
 
     public void addComment(String comment) {
         this.comments.add(comment);
-        DataBaseManager.modifyObjectAttribute(this, "comments", this.comments);
     }
 
     public void removeEmployee(Employee employee) {
         this.employees.remove(employee);
-        DataBaseManager.modifyObjectAttribute(this, "employees", this.employees);
     }
 
     public void removeComment(String comment) {
         this.comments.remove(comment);
-        DataBaseManager.modifyObjectAttribute(this, "comments", this.comments);
-    }
-
-    public void remove() {
-        DataBaseManager.removeObjectFromJson(this);
-    }
-
-    public void setBudget(float budget) {
-        DataBaseManager.modifyObjectAttribute(this, "budget", budget);
-    }
-
-    public void getBudget() {
-        DataBaseManager.getSpecificAttribute(this, "budget");
     }
 }

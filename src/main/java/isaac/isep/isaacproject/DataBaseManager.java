@@ -161,15 +161,15 @@ public class DataBaseManager {
         return null;
     }
 
-    public static void getSpecificAttribute(Object object, String attributeName) {
+    public static JsonElement getSpecificAttribute(Object object, String attributeName) {
         JsonObject attributes = getAllAttributes(object);
 
         if (attributes != null && attributes.has(attributeName)) {
-            attributes.get(attributeName);
-            return;
+            return attributes.get(attributeName);
         }
 
         System.out.println("Attribute " + attributeName + " not found for the specified object.");
+        return null;
     }
 
     private static JsonObject loadOrInitializeJson() {

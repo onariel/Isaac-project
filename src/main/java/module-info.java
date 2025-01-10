@@ -1,6 +1,7 @@
 module isaac.isep.isaacproject {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.google.gson;
 
 
     opens isaac.isep.isaacproject to javafx.fxml;

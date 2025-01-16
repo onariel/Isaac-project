@@ -26,7 +26,8 @@ public class LoginPageController {
     @FXML
     public void OnLogin() {
         if(email.getText().isEmpty() || password.getText().isEmpty()) {
-            if (Boolean.TRUE.equals(PostgresqlManager.Login(email.getText(), password.getText()))){
+            PostgresqlManager manager = new PostgresqlManager();
+            if (Boolean.TRUE.equals(manager.Login(email.getText(), password.getText()))){
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Main-Page.fxml"));
                     Parent root = fxmlLoader.load();

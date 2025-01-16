@@ -1,19 +1,17 @@
 package isaac.isep.isaacproject;
 
 import isaac.isep.isaacproject.Apiconector.PostgresqlManager;
-import isaac.isep.isaacproject.Apiconector.RequestLogin;
+import isaac.isep.isaacproject.Backend.Employee;
+import isaac.isep.isaacproject.Backend.Project;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Date;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+
 
 public class RunApplication extends Application {
     @Override
@@ -26,6 +24,12 @@ public class RunApplication extends Application {
     }
 
     public static void main(String[] args) {
-    launch();
+        PostgresqlManager postgresqlManager = new PostgresqlManager();
+        Employee employee = postgresqlManager.getEmployeeByEmail("Lea@gmail.com");
+        System.out.println(employee);
+        Date date = new Date();
+        date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+        Project project =  postgresqlManager.createProject("test", "test", date, date,false,employee,800000);
+        System.out.println(project.getName());
     }
 }

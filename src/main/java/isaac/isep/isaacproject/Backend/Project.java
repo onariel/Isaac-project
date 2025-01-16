@@ -6,7 +6,7 @@ import java.util.Date;
 @SuppressWarnings({"unused", "FieldCanBeLocal", "FieldMayBeFinal"})
 
 public class Project {
-    public int id;
+    public long id;
     public String name;
     public String description;
     public Date startDate;
@@ -18,8 +18,7 @@ public class Project {
     public float budget;
 
     //Constructor
-    public Project(int id, String name, String description, Date startDate, Date endDate, Boolean status, Employee projectManager, float budget) {
-        this.id = id;
+    public Project(String name, String description, Date startDate, Date endDate, Boolean status, Employee projectManager, float budget) {
         this.name = name;
         this.description = description;
         this.startDate = startDate;
@@ -32,8 +31,10 @@ public class Project {
         this.budget = budget;
     }
 
+    public Project() {}
+
     //Getters and Setters
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -73,7 +74,7 @@ public class Project {
         return budget;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -127,5 +128,21 @@ public class Project {
 
     public void removeTask(Task task) {
         this.tasks.remove(task);
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status=" + status +
+                ", employees=" + employees +
+                ", tasks=" + tasks +
+                ", projectManager=" + projectManager +
+                ", budget=" + budget +
+                '}';
     }
 }

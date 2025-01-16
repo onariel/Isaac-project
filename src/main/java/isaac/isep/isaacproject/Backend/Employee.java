@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class Employee {
-    public int id;
+    public long id;
     public String name;
     public String email;
     public String role;
@@ -29,8 +29,10 @@ public class Employee {
         this.projects = new ArrayList<>();
     }
 
+    public Employee() {}
+
     //Getters and Setters
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -54,7 +56,7 @@ public class Employee {
         return projects;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -72,5 +74,17 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", projects=" + projects +
+                '}';
     }
 }

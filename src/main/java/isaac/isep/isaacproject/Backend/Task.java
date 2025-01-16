@@ -6,7 +6,7 @@ import java.util.Date;
 @SuppressWarnings({"unused", "FieldCanBeLocal", "FieldMayBeFinal"})
 
 public class Task {
-    public int id;
+    public long id;
     public String name;
     public String description;
     public int priority;
@@ -18,8 +18,7 @@ public class Task {
     public float budget;
 
     //Constructor
-    public Task(int id, String name, String description, int priority, Date dueDate, Boolean status, Project project, float budget) {
-        this.id = id;
+    public Task(String name, String description, int priority, Date dueDate, Boolean status, Project project, float budget) {
         this.name = name;
         this.description = description;
         this.priority = priority;
@@ -32,8 +31,10 @@ public class Task {
         this.project.addTask(this);
     }
 
+    public Task(){}
+
     //Getters and Setters
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -73,7 +74,7 @@ public class Task {
         return budget;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

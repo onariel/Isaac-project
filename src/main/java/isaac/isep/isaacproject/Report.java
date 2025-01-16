@@ -28,7 +28,7 @@ public class Report {
         float totalTaskBudget = 0;
 
         for (Task task : tasks) {
-            if (task.getStatus()) {
+            if (task.getStatus()==1) {
                 completedTasks++;
             }
             totalTaskBudget += task.getBudget();

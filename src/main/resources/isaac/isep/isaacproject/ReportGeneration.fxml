@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isaac.isep.isaacproject.Controllers.ReportGenerationController">
+    <children>
+        <ComboBox fx:id="projectComboBox" layoutX="50.0" layoutY="50.0" prefWidth="200.0"/>
+        <Button text="Generate Report" layoutX="270.0" layoutY="50.0" onAction="#generateReport"/>
+        <Button text="Visualize PDF" layoutX="400.0" layoutY="50.0" onAction="#visualizePDF"/>
+    </children>
+</AnchorPane>

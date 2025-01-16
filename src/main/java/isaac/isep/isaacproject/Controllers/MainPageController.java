@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-@SuppressWarnings({"unused", "FieldCanBeLocal", "FieldMayBeFinal"})
-
 public class MainPageController {
 
     @FXML
@@ -32,54 +30,59 @@ public class MainPageController {
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
-        // Update the label or perform other actions with the employee ID
         employeeIdLabel.setText("Employee ID: " + employeeId);
     }
 
     @FXML
     private void goToProjectCreation() {
-        loadPage("ProjectCreation.fxml");
+        loadPage("ProjectCreation.fxml", employeeId);
     }
 
     @FXML
     private void goToTaskCreation() {
-        loadPage("TaskCreation.fxml");
+        loadPage("TaskCreation.fxml", employeeId);
     }
 
     @FXML
     private void goToTaskManagement() {
-        loadPage("TaskManagement.fxml");
+        loadPage("TaskManagement.fxml", employeeId);
     }
 
     @FXML
     private void goToEmployeeManagement() {
-        loadPage("EmployeeManagement.fxml");
+        loadPage("EmployeeManagement.fxml", employeeId);
     }
 
     @FXML
     private void goToProjectManagement() {
-        loadPage("ProjectManagement.fxml");
+        loadPage("ProjectManagement.fxml", employeeId);
     }
 
     @FXML
     private void goToKanbanView() {
-        loadPage("KanbanView.fxml");
+        loadPage("KanbanView.fxml", employeeId);
     }
 
     @FXML
     private void goToCalendarView() {
-        loadPage("CalendarView.fxml");
+        loadPage("CalendarView.fxml", employeeId);
     }
 
     @FXML
     private void goToGenerationReport() {
-        loadPage("GenerationReport.fxml");
+        loadPage("GenerationReport.fxml", employeeId);
     }
 
-    private void loadPage(String fxmlFile) {
+    private void loadPage(String fxmlFile, int employeeId) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource(fxmlFile));
             Parent root = fxmlLoader.load();
+
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof EmployeeIdAware) {
+                ((EmployeeIdAware) controller).setEmployeeId(employeeId);
+            }
+
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -87,8 +90,5 @@ public class MainPageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setEmployeeId(Integer employeeId) {
     }
 }

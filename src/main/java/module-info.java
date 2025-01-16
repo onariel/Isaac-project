@@ -5,6 +5,7 @@ module isaac.isep.isaacproject {
     requires layout;
     requires kernel;
     requires spring.web;
+    requires java.desktop;
 
 
     opens isaac.isep.isaacproject to javafx.fxml;

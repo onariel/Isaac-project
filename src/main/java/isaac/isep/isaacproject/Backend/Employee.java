@@ -1,4 +1,4 @@
-package isaac.isep.isaacproject;
+package isaac.isep.isaacproject.Backend;
 
 import java.util.ArrayList;
 
@@ -14,12 +14,18 @@ public class Employee {
     public ArrayList<Project> projects;
 
     //Constructor
-    public Employee(int id, String name, String email, String role, String password) {
-        this.id = id;
+    public Employee(String name, String email, String role, String password) {
         this.name = name;
         this.email = email;
         this.role = role;
         this.password = password;
+        this.projects = new ArrayList<>();
+    }
+
+    public Employee(String name, String email, String role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
         this.projects = new ArrayList<>();
     }
 

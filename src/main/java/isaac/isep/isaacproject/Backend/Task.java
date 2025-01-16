@@ -1,35 +1,35 @@
-package isaac.isep.isaacproject;
+package isaac.isep.isaacproject.Backend;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 @SuppressWarnings({"unused", "FieldCanBeLocal", "FieldMayBeFinal"})
 
-public class Project {
+public class Task {
     public int id;
     public String name;
     public String description;
-    public Date startDate;
-    public Date endDate;
+    public int priority;
+    public Date dueDate;
     public Boolean status;
     public ArrayList<Employee> employees;
-    public ArrayList<Task> tasks;
-    public Employee projectManager;
+    public ArrayList<String> comments;
+    public Project project;
     public float budget;
 
     //Constructor
-    public Project(int id, String name, String description, Date startDate, Date endDate, Boolean status, Employee projectManager, float budget) {
+    public Task(int id, String name, String description, int priority, Date dueDate, Boolean status, Project project, float budget) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.priority = priority;
+        this.dueDate = dueDate;
         this.status = status;
         this.employees = new ArrayList<>();
-        this.tasks = new ArrayList<>();
-        this.projectManager = projectManager;
-        this.employees.add(projectManager);
+        this.comments = new ArrayList<>();
+        this.project = project;
         this.budget = budget;
+        this.project.addTask(this);
     }
 
     //Getters and Setters
@@ -45,12 +45,12 @@ public class Project {
         return description;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public int getPriority() {
+        return priority;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getDueDate() {
+        return dueDate;
     }
 
     public Boolean getStatus() {
@@ -61,12 +61,12 @@ public class Project {
         return employees;
     }
 
-    public ArrayList<Task> getTasks() {
-        return tasks;
+    public ArrayList<String> getComments() {
+        return comments;
     }
 
-    public Employee getProjectManager() {
-        return projectManager;
+    public Project getProject() {
+        return project;
     }
 
     public float getBudget() {
@@ -85,12 +85,12 @@ public class Project {
         this.description = description;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     public void setStatus(Boolean status) {
@@ -101,12 +101,12 @@ public class Project {
         this.employees = employees;
     }
 
-    public void setTasks(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public void setComments(ArrayList<String> comments) {
+        this.comments = comments;
     }
 
-    public void setProjectManager(Employee projectManager) {
-        this.projectManager = projectManager;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public void setBudget(float budget) {
@@ -117,15 +117,15 @@ public class Project {
         this.employees.add(employee);
     }
 
-    public void addTask(Task task) {
-        this.tasks.add(task);
+    public void addComment(String comment) {
+        this.comments.add(comment);
     }
 
     public void removeEmployee(Employee employee) {
         this.employees.remove(employee);
     }
 
-    public void removeTask(Task task) {
-        this.tasks.remove(task);
+    public void removeComment(String comment) {
+        this.comments.remove(comment);
     }
 }

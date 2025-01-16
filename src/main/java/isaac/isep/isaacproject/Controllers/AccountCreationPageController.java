@@ -1,6 +1,6 @@
 package isaac.isep.isaacproject.Controllers;
 
-import isaac.isep.isaacproject.Employee;
+import isaac.isep.isaacproject.Backend.Employee;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -36,7 +36,7 @@ public class AccountCreationPageController {
             errorMessage.setText("Please fill all the fields");
         }else {
             if (Password.getText().equals(ConfirmPassword.getText())) {
-                Employee account = new Employee(Integer.valueOf(Id.getText()),Name.getText(), email.getText(), Role.getText(), Password.getText());
+                Employee account = new Employee(Name.getText(), email.getText(), Role.getText(), Password.getText());
                 Stage stage = (Stage) Id.getScene().getWindow();
                 stage.close();
             }else{

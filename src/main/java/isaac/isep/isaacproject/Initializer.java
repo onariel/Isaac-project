@@ -1,5 +1,9 @@
 package isaac.isep.isaacproject;
 
+import isaac.isep.isaacproject.Backend.Employee;
+import isaac.isep.isaacproject.Backend.Project;
+import isaac.isep.isaacproject.Backend.Task;
+
 import java.util.Date;
 
 @SuppressWarnings({"unused", "FieldCanBeLocal", "FieldMayBeFinal"})
@@ -9,15 +13,15 @@ public class Initializer {
         DataBaseManager.clearDatabase();
 
         // Create employees
-        Employee employee0 = new Employee(0, "Employee0", "employee0@isaac.isep", "Role1", "password");
-        Employee employee1 = new Employee(1, "Employee1", "employee1@isaac.isep", "Role1", "password");
-        Employee employee2 = new Employee(2, "Employee2", "employee2@isaac.isep", "Role1", "password");
-        Employee employee3 = new Employee(3, "Employee3", "employee3@isaac.isep", "Role1", "password");
-        Employee employee4 = new Employee(4, "Employee4", "employee4@isaac.isep", "Role3", "password");
-        Employee employee5 = new Employee(5, "Employee5", "employee5@isaac.isep", "Role1", "password");
-        Employee employee6 = new Employee(6, "Employee6", "employee6@isaac.isep", "Role2", "password");
-        Employee employee7 = new Employee(7, "Employee7", "employee7@isaac.isep", "Role2", "password");
-        Employee employee8 = new Employee(8, "Employee8", "employee8@isaac.isep", "Role2", "password");
+        Employee employee0 = new Employee( "Employee0", "employee0@isaac.isep", "Role1", "password");
+        Employee employee1 = new Employee( "Employee1", "employee1@isaac.isep", "Role1", "password");
+        Employee employee2 = new Employee( "Employee2", "employee2@isaac.isep", "Role1", "password");
+        Employee employee3 = new Employee( "Employee3", "employee3@isaac.isep", "Role1", "password");
+        Employee employee4 = new Employee( "Employee4", "employee4@isaac.isep", "Role3", "password");
+        Employee employee5 = new Employee( "Employee5", "employee5@isaac.isep", "Role1", "password");
+        Employee employee6 = new Employee( "Employee6", "employee6@isaac.isep", "Role2", "password");
+        Employee employee7 = new Employee( "Employee7", "employee7@isaac.isep", "Role2", "password");
+        Employee employee8 = new Employee( "Employee8", "employee8@isaac.isep", "Role2", "password");
 
         Date currentDate = new Date();
 

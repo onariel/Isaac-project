@@ -1,11 +1,19 @@
 package isaac.isep.isaacproject;
 
+import isaac.isep.isaacproject.Apiconector.PostgresqlManager;
+import isaac.isep.isaacproject.Apiconector.RequestLogin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 public class RunApplication extends Application {
     @Override
@@ -18,6 +26,6 @@ public class RunApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+    launch();
     }
 }

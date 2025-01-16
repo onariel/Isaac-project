@@ -9,6 +9,9 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import isaac.isep.isaacproject.Backend.Employee;
+import isaac.isep.isaacproject.Backend.Project;
+import isaac.isep.isaacproject.Backend.Task;
 
 import java.io.FileNotFoundException;
 import java.util.Date;

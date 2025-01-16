@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="isaac.isep.isaacproject.Controllers.CalendarViewController"
+            prefHeight="600.0" prefWidth="800.0">
+    <children>
+        <VBox spacing="10.0" layoutX="20.0" layoutY="20.0">
+            <children>
+                <Label fx:id="monthYearLabel" text="Month Year"/>
+                <GridPane fx:id="calendarGrid" gridLinesVisible="true">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints percentHeight="16.66"/>
+                        <RowConstraints percentHeight="16.66"/>
+                        <RowConstraints percentHeight="16.66"/>
+                        <RowConstraints percentHeight="16.66"/>
+                        <RowConstraints percentHeight="16.66"/>
+                        <RowConstraints percentHeight="16.66"/>
+                    </rowConstraints>
+                </GridPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

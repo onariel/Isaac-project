@@ -1,5 +1,6 @@
 package isaac.isep.isaacproject.Controllers;
 
+import isaac.isep.isaacproject.Apiconector.PostgresqlManager;
 import isaac.isep.isaacproject.Backend.Employee;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,7 +37,8 @@ public class AccountCreationPageController {
             errorMessage.setText("Please fill all the fields");
         }else {
             if (Password.getText().equals(ConfirmPassword.getText())) {
-                Employee account = new Employee(Name.getText(), email.getText(), Role.getText(), Password.getText());
+                PostgresqlManager postgresqlManager = new PostgresqlManager();
+                postgresqlManager.createEmployee(Name.getText(), email.getText(), Role.getText(), Password.getText());
                 Stage stage = (Stage) Id.getScene().getWindow();
                 stage.close();
             }else{

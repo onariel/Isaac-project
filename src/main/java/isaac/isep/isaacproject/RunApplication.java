@@ -18,14 +18,12 @@ public class RunApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("login-page.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 820, 640);
-        stage.setTitle("Hello!");
+        stage.setTitle("Login Page");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        PostgresqlManager postgresqlManager = new PostgresqlManager();
-        System.out.println(postgresqlManager.Login("Lea@gmail.com","Lea"));
-
+        launch();
     }
 }

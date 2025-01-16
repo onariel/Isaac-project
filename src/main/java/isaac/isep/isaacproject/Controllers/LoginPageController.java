@@ -25,15 +25,15 @@ public class LoginPageController {
 
     @FXML
     public void OnLogin() {
-        if(email.getText().isEmpty() || password.getText().isEmpty()) {
-            PostgresqlManager manager = new PostgresqlManager();
-            if (Boolean.TRUE.equals(manager.Login(email.getText(), password.getText()))){
+        if(!email.getText().isEmpty() && !password.getText().isEmpty()) {
+            PostgresqlManager postgresqlManager = new PostgresqlManager();
+            if (postgresqlManager.Login(email.getText(),password.getText()) != null){
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Main-Page.fxml"));
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     Scene scene = new Scene(root, 800, 300);
-                    stage.setTitle("Account creation page");
+                    stage.setTitle("Main page");
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {

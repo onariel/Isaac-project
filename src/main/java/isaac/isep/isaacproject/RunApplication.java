@@ -25,11 +25,7 @@ public class RunApplication extends Application {
 
     public static void main(String[] args) {
         PostgresqlManager postgresqlManager = new PostgresqlManager();
-        Employee employee = postgresqlManager.getEmployeeByEmail("Lea@gmail.com");
-        System.out.println(employee);
-        Date date = new Date();
-        date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-        Project project =  postgresqlManager.createProject("test", "test", date, date,false,employee,800000);
-        System.out.println(project.getName());
+        System.out.println(postgresqlManager.Login("Lea@gmail.com","Lea"));
+
     }
 }

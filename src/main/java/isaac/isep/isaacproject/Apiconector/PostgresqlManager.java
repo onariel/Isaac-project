@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -66,16 +67,16 @@ public class PostgresqlManager {
         return project;
     }
 
-    public Boolean Login(String email, String password) {
+    public Long Login(String email, String password) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON); // Définit application/json
 
         RequestLogin requestLogin = new RequestLogin(email, password);
 
-        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8080/Employee/login", requestLogin, String.class);
+        ResponseEntity<Long> response = restTemplate.postForEntity("http://localhost:8080/Employee/login", requestLogin, Long.class);
         System.out.println(response.getBody());
-        return null;
+        return response.getBody();
     }
 
     public Employee getEmployeeByEmail(String email) {
@@ -268,5 +269,16 @@ public class PostgresqlManager {
         restTemplate.postForEntity(BASE_URL + "/Task/" + id + "/budget", request, Float.class);
     }
 
+    public boolean addEmployee(long id, String email) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>(email, headers);
+        ResponseEntity<Boolean> response  = restTemplate.postForEntity(BASE_URL + "/Employee/" + id + "/add", request, Boolean.class);
+        return Boolean.TRUE.equals(response.getBody());
+    }
 
+    public List<Project> getProjects(long id) {
+        ResponseEntity<List> response = restTemplate.getForEntity(BASE_URL + "/Project/" + id, List.class);
+        return response.getBody();
+    }
 }

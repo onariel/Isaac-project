@@ -56,6 +56,7 @@ public class AccountCreationPageController {
         Password.clear();
         ConfirmPassword.clear();
         Role.clear();
+        errorMessage.setText("");
     }
 
 }

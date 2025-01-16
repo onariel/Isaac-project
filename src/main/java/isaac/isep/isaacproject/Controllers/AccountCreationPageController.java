@@ -9,10 +9,6 @@ import javafx.stage.Stage;
 
 public class AccountCreationPageController {
 
-
-    @FXML
-    private TextField Id;
-
     @FXML
     private TextField Name;
 
@@ -31,25 +27,30 @@ public class AccountCreationPageController {
     @FXML
     private Label errorMessage;
 
+    public static PostgresqlManager postgresqlManager;
+
     @FXML
     public void createAccount() {
-        if(Id.getText().isEmpty() || Name.getText().isEmpty() || email.getText().isEmpty() || Password.getText().isEmpty() || ConfirmPassword.getText().isEmpty()) {
+        PostgresqlManager postgresqlManager = new PostgresqlManager();
+        if(Name.getText().isEmpty() || email.getText().isEmpty() || Password.getText().isEmpty() || ConfirmPassword.getText().isEmpty()) {
             errorMessage.setText("Please fill all the fields");
-        }else {
-            if (Password.getText().equals(ConfirmPassword.getText())) {
-                PostgresqlManager postgresqlManager = new PostgresqlManager();
-                postgresqlManager.createEmployee(Name.getText(), email.getText(), Role.getText(), Password.getText());
-                Stage stage = (Stage) Id.getScene().getWindow();
-                stage.close();
             }else{
-                errorMessage.setText("Passwords do not match");
+            if (postgresqlManager.getEmployeeByEmail(email.getText()) != null) {
+                errorMessage.setText("This email already exists");
+            } else {
+                if (Password.getText().equals(ConfirmPassword.getText())) {
+                    postgresqlManager.createEmployee(Name.getText(), email.getText(), Role.getText(), Password.getText());
+                    Stage stage = (Stage) Name.getScene().getWindow();
+                    stage.close();
+                } else {
+                    errorMessage.setText("Passwords do not match");
+                }
             }
         }
     }
 
     @FXML
     public void clear(){
-        Id.clear();
         Name.clear();
         email.clear();
         Password.clear();

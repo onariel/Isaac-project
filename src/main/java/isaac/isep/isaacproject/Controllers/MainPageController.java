@@ -23,54 +23,51 @@ public class MainPageController {
     @FXML
     private VBox vBox;
 
-    @FXML
-    private Label employeeIdLabel;
 
     private int employeeId;
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
-        employeeIdLabel.setText("Employee ID: " + employeeId);
     }
 
     @FXML
     private void goToProjectCreation() {
-        loadPage("ProjectCreation.fxml", employeeId);
+        loadPage("Project-creation-page.fxml", employeeId);
     }
 
     @FXML
     private void goToTaskCreation() {
-        loadPage("TaskCreation.fxml", employeeId);
+        loadPage("Task-Creation.fxml", employeeId);
     }
 
     @FXML
     private void goToTaskManagement() {
-        loadPage("TaskManagement.fxml", employeeId);
+        loadPage("Task-Management.fxml", employeeId);
     }
 
     @FXML
     private void goToEmployeeManagement() {
-        loadPage("EmployeeManagement.fxml", employeeId);
+        loadPage("Employee-Management.fxml", employeeId);
     }
 
     @FXML
     private void goToProjectManagement() {
-        loadPage("ProjectManagement.fxml", employeeId);
+        loadPage("Project-Management.fxml", employeeId);
     }
 
     @FXML
     private void goToKanbanView() {
-        loadPage("KanbanView.fxml", employeeId);
+        loadPage("Kanban-view.fxml", employeeId);
     }
 
     @FXML
     private void goToCalendarView() {
-        loadPage("CalendarView.fxml", employeeId);
+        loadPage("Calendar-View.fxml", employeeId);
     }
 
     @FXML
     private void goToGenerationReport() {
-        loadPage("GenerationReport.fxml", employeeId);
+        loadPage("ReportGeneration.fxml", employeeId);
     }
 
     private void loadPage(String fxmlFile, int employeeId) {

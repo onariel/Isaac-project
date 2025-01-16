@@ -140,5 +140,11 @@ The project uses the following Maven dependencies:
 
 ## Database 
 
+We used a PostgreSQL database hosted locally on Docker. To interact with this database,
+we developed an API that handles various requests.
+In the main project, we defined all the API endpoints it can accept.
+Using these endpoints, we can retrieve, create, and modify all the data stored in the database.
+This allows us to access all the necessary information required for the application.
+
 ## Conclusion
 

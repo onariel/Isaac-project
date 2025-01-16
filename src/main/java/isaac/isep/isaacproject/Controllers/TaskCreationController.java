@@ -71,13 +71,12 @@ public class TaskCreationController implements Initializable {
         String description = descriptionField.getText();
         int priority = Integer.parseInt(priorityField.getText());
         Date dueDate = convertToDate(dueDatePicker.getValue());
-        Boolean status = statusComboBox.getValue().equals("Completed");
         ArrayList<Employee> selectedEmployees = getSelectedEmployees();
         ArrayList<String> comments = parseComments(commentsField.getText());
         Project project = getProjectByName(projectField.getText());
         float budget = Float.parseFloat(budgetField.getText());
 
-        Task task = new Task(name, description, priority, dueDate, status, project, budget);
+        Task task = new Task(name, description, priority, dueDate, project, budget);
         task.setEmployees(selectedEmployees);
         task.setComments(comments);
 

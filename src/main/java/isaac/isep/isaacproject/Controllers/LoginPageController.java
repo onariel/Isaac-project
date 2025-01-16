@@ -28,6 +28,7 @@ public class LoginPageController {
         if (!email.getText().isEmpty() && !password.getText().isEmpty()) {
             PostgresqlManager postgresqlManager = new PostgresqlManager();
             Integer employeeId = Math.toIntExact(postgresqlManager.Login(email.getText(), password.getText()));
+            System.out.println(employeeId);
             if (employeeId != null) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Main-Page.fxml"));

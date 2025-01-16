@@ -7,6 +7,7 @@ The main features of the application are: personnel management, task management,
 
 This document provides an overview of the project structure, technologies used, dependencies, and other relevant information.
 
+**Note:** The project is not fully working and may contain incomplete features or bugs.
 ## Technologies Used
 - **Programming Language:** Java
 - **Build Tool:** Maven
@@ -29,22 +30,32 @@ project-root/
 │   │   │       │   └── Task
 │   │   │       ├── Controllers/
 │   │   │       │   ├── AccountCreationPageController
+│   │   │       │   ├── CalendarViewController
+│   │   │       │   ├── EmployeeIdAware
+│   │   │       │   ├── EmployeeManagementController
 │   │   │       │   ├── KanbanViewController
 │   │   │       │   ├── LoginPageController
 │   │   │       │   ├── MainPageController
-│   │   │       │   └── ProjectCreationPageController
-│   │   │       ├── DataBaseManager
-│   │   │       ├── Initializer
+│   │   │       │   ├── ProjectCreationPageController
+│   │   │       │   ├── ProjectManagementController
+│   │   │       │   ├── ReportGenerationController
+│   │   │       │   ├── TaskCreationController
+│   │   │       │   └── TaskManagementController
 │   │   │       ├── Report
 │   │   │       └── RunApplication
 │   └── resources/
 │       └── isaac.isep.isaacproject/
-│       │   ├── Account-creation-page.fxml
-│       │   ├── Kanban-view.fxml
-│       │   ├── Login-page.fxml
-│       │   ├── Main-Page.fxml
-│       │   └── Project-creation-page.fxml
-│       └── data.json
+│           ├── Account-creation-page.fxml
+│           ├── Calendar-view.fxml
+│           ├── Employee-management.fxml
+│           ├── Kanban-view.fxml
+│           ├── Login-page.fxml
+│           ├── Main-page.fxml
+│           ├── Project-creation-page.fxml
+│           ├── Project-management.fxml
+│           ├── ReportGeneration.fxml
+│           ├── Task-creation.fxml
+│           └── Task-Management.fxml
 ├── module-info.java
 ├── docker-compose.yml
 └── pom.xml
@@ -61,81 +72,75 @@ project-root/
 The project uses the following Maven dependencies:
 ```xml
 <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>17.0.6</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>17.0.6</version>
-        </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>17.0.6</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>17.0.6</version>
+    </dependency>
 
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.9</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itext7-core</artifactId>
-            <version>7.1.19</version>
-        </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+    </dependency>
 
-        <dependency>
-            <groupId> org.apache.cassandra</groupId>
-            <artifactId>cassandra-all</artifactId>
-            <version>0.8.1</version>
+    <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.8.9</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>itext7-core</artifactId>
+        <version>7.1.19</version>
+    </dependency>
 
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
+    <dependency>
+        <groupId> org.apache.cassandra</groupId>
+        <artifactId>cassandra-all</artifactId>
+        <version>0.8.1</version>
 
-        </dependency>
-        
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>annotationProcessor</scope>
-        </dependency>
-    </dependencies>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+            </exclusion>
+        </exclusions>
+
+    </dependency>
+    
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.24</version>
+        <scope>provided</scope>
+    </dependency>
+
+</dependencies>
 ```
 
 ## Database 
@@ -148,3 +153,4 @@ This allows us to access all the necessary information required for the applicat
 
 ## Conclusion
 
+In this project, we aimed to design and implement a collaborative task management application with features such as personnel management, task management, project management, project monitoring, user interface, and report generation. Despite our efforts, the project is not fully working and may contain incomplete features or bugs. We utilized various technologies including Java, Maven, JavaFX, Spring Boot, and PostgreSQL. The project structure follows a standard Maven directory layout, and we have defined multiple API endpoints to interact with the database. Further work is needed to complete and debug the application to ensure full functionality.

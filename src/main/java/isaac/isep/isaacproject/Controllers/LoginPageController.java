@@ -47,7 +47,11 @@ public class LoginPageController {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+            } else {
+                ErrorMessage.setText("Invalid login credentials");
             }
+        } else {
+            ErrorMessage.setText("Please enter email and password");
         }
     }
 

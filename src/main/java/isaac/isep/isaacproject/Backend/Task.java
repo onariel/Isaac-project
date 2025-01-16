@@ -11,19 +11,19 @@ public class Task {
     public String description;
     public int priority;
     public Date dueDate;
-    public Boolean status;
+    public long status;
     public ArrayList<Employee> employees;
     public ArrayList<String> comments;
     public Project project;
     public float budget;
 
     //Constructor
-    public Task(String name, String description, int priority, Date dueDate, Boolean status, Project project, float budget) {
+    public Task(String name, String description, int priority, Date dueDate, Project project, float budget) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.status = status;
+        this.status = 0;
         this.employees = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.project = project;
@@ -54,7 +54,7 @@ public class Task {
         return dueDate;
     }
 
-    public Boolean getStatus() {
+    public long getStatus() {
         return status;
     }
 
@@ -94,7 +94,7 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(long status) {
         this.status = status;
     }
 

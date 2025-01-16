@@ -51,7 +51,7 @@ public class PostgresqlManager {
         return project;
     }
 
-    public Project createTask(String name, String description, int priority, Date dueDate, Boolean status, Project project, float budget) {
+    public Project createTask(String name, String description, int priority, Date dueDate, Project project, float budget) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         Task task = new Task();
@@ -59,7 +59,7 @@ public class PostgresqlManager {
         task.setDescription(description);
         task.setPriority(priority);
         task.setDueDate(dueDate);
-        task.setStatus(status);
+        task.setStatus(0);
         task.setProject(project);
         task.setBudget(budget);
         ResponseEntity<Long> response = restTemplate.postForEntity(BASE_URL + "/Task/create", task, Long.class);

@@ -10,8 +10,6 @@ import java.util.Date;
 
 public class Initializer {
     public static void main(String[] args) {
-        DataBaseManager.clearDatabase();
-
         // Create employees
         Employee employee0 = new Employee( "Employee0", "employee0@isaac.isep", "Role1", "password");
         Employee employee1 = new Employee( "Employee1", "employee1@isaac.isep", "Role1", "password");

@@ -17,6 +17,8 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 
+import isaac.isep.isaacproject.Apiconector.PostgresqlManager;
+
 public class Report {
 
     public String generateProjectProgressReport(Project project) {

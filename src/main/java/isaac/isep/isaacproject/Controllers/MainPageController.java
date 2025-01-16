@@ -26,6 +26,17 @@ public class MainPageController {
     private VBox vBox;
 
     @FXML
+    private Label employeeIdLabel;
+
+    private int employeeId;
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+        // Update the label or perform other actions with the employee ID
+        employeeIdLabel.setText("Employee ID: " + employeeId);
+    }
+
+    @FXML
     private void goToProjectCreation() {
         loadPage("ProjectCreation.fxml");
     }
@@ -76,5 +87,8 @@ public class MainPageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setEmployeeId(Integer employeeId) {
     }
 }

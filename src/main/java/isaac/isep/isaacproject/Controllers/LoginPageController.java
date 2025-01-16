@@ -25,12 +25,19 @@ public class LoginPageController {
 
     @FXML
     public void OnLogin() {
-        if(!email.getText().isEmpty() && !password.getText().isEmpty()) {
+        if (!email.getText().isEmpty() && !password.getText().isEmpty()) {
             PostgresqlManager postgresqlManager = new PostgresqlManager();
-            if (postgresqlManager.Login(email.getText(),password.getText()) != null){
+            Integer employeeId = Math.toIntExact(postgresqlManager.Login(email.getText(), password.getText()));
+            if (employeeId != null) {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Main-Page.fxml"));
                     Parent root = fxmlLoader.load();
+
+                    // Get the controller of the main page
+                    MainPageController mainPageController = fxmlLoader.getController();
+                    // Set the employee ID
+                    mainPageController.setEmployeeId(employeeId);
+
                     Stage stage = new Stage();
                     Scene scene = new Scene(root, 800, 300);
                     stage.setTitle("Main page");
@@ -39,7 +46,6 @@ public class LoginPageController {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
             }
         }
     }
@@ -57,6 +63,5 @@ public class LoginPageController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

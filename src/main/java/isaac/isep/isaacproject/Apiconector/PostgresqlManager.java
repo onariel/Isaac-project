@@ -41,7 +41,6 @@ public class PostgresqlManager {
         project.setStatus(status);
         project.setProjectManager(projectManager);
         project.setBudget(budget);
-        System.out.println(project);
         ResponseEntity<Long> response = restTemplate.postForEntity(BASE_URL + "/Project/create", project, Long.class);
         project.setId(response.getBody());
         return project;

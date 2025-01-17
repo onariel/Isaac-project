@@ -84,8 +84,6 @@ public class TaskCreationController implements EmployeeIdAware {
         this.employeeId = employeeId;
         List<Project> managedProjects = new ArrayList<>();
         List<Project> project = postgresqlManager.getProjects(employeeId);
-        System.out.println(employeeId);
-        System.out.println(project);
         for(int i = 0; i < project.size(); i++) {
             if(project.get(i).getProjectManager().getId() == employeeId) {
                 managedProjects.add(project.get(i));

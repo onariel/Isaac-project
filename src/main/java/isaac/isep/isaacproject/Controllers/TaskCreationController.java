@@ -1,25 +1,23 @@
 package isaac.isep.isaacproject.Controllers;
 
+import isaac.isep.isaacproject.Apiconector.PostgresqlManager;
 import isaac.isep.isaacproject.Backend.Employee;
 import isaac.isep.isaacproject.Backend.Project;
 import isaac.isep.isaacproject.Backend.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class TaskCreationController implements Initializable {
+public class TaskCreationController implements EmployeeIdAware {
 
     @FXML
     private TextField taskNameField;
@@ -34,82 +32,77 @@ public class TaskCreationController implements Initializable {
     private DatePicker dueDatePicker;
 
     @FXML
-    private ComboBox<String> statusComboBox;
-
-    @FXML
-    private VBox employeesVBox;
-
-    @FXML
-    private TextArea commentsField;
-
-    @FXML
-    private TextField projectField;
-
-    @FXML
     private TextField budgetField;
 
-    private ArrayList<Employee> employees;
+    @FXML
+    private TextField employeeEmail;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        statusComboBox.getItems().addAll("Not Started", "In Progress", "Completed");
-        employees = getAllEmployees();
-        populateEmployeeCheckboxes();
-    }
+    private int employeeId;
 
-    private void populateEmployeeCheckboxes() {
-        for (Employee employee : employees) {
-            CheckBox checkBox = new CheckBox(employee.getName());
-            checkBox.setUserData(employee);
-            employeesVBox.getChildren().add(checkBox);
-        }
-    }
+    @FXML
+    private ComboBox<String> projects;
+
+    @FXML
+    private Label errorLabel;
+
+    private List<Project> projectList;
 
     @FXML
     private void createTask() {
-        String name = taskNameField.getText();
-        String description = descriptionField.getText();
-        int priority = Integer.parseInt(priorityField.getText());
-        Date dueDate = convertToDate(dueDatePicker.getValue());
-        ArrayList<Employee> selectedEmployees = getSelectedEmployees();
-        ArrayList<String> comments = parseComments(commentsField.getText());
-        Project project = getProjectByName(projectField.getText());
-        float budget = Float.parseFloat(budgetField.getText());
-
-        Task task = new Task(name, description, priority, dueDate, project, budget);
-        task.setEmployees(selectedEmployees);
-        task.setComments(comments);
-
-        System.out.println("Task created: " + task);
-    }
-
-    private ArrayList<Employee> getSelectedEmployees() {
-        ArrayList<Employee> selectedEmployees = new ArrayList<>();
-        for (javafx.scene.Node node : employeesVBox.getChildren()) {
-            CheckBox checkBox = (CheckBox) node;
-            if (checkBox.isSelected()) {
-                selectedEmployees.add((Employee) checkBox.getUserData());
+        if (projectList.isEmpty()) {
+            errorLabel.setText("you dont have any projects where you are the project manager, only the project manager can add task");
+        }else {
+            if (taskNameField.getText().isEmpty() || descriptionField.getText().isEmpty() || priorityField.getText().isEmpty() || employeeEmail.getText().isEmpty() || projects.getValue().isEmpty() || budgetField.getText().isEmpty()) {
+                errorLabel.setText("please fill all the fields");
+            }else{
+                PostgresqlManager postgresqlManager = new PostgresqlManager();
+                if (postgresqlManager.getEmployeeByEmail(employeeEmail.getText()) == null) {
+                    errorLabel.setText("Employee not found, please select a correct email");
+                } else {
+                    String name = taskNameField.getText();
+                    String description = descriptionField.getText();
+                    int priority = Integer.parseInt(priorityField.getText());
+                    Date dueDate = convertToDate(dueDatePicker.getValue());
+                    Employee selectedEmployee = postgresqlManager.getEmployeeByEmail(employeeEmail.getText());
+                    float budget = Float.parseFloat(budgetField.getText());
+                    Project project = this.projectList.get(Integer.valueOf(projects.getValue().split(" ")[0]));
+                    postgresqlManager.createTask(name,description,priority,dueDate,project,budget);
+                    Stage stage = (Stage) errorLabel.getScene().getWindow();
+                    stage.close();
+                }
             }
         }
-        return selectedEmployees;
     }
 
     private Date convertToDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
-    private ArrayList<String> parseComments(String commentsText) {
-        // Implement logic to parse comments from the text
-        return new ArrayList<>();
+    @Override
+    public void setEmployeeId(int employeeId) {
+        PostgresqlManager postgresqlManager = new PostgresqlManager();
+        this.employeeId = employeeId;
+        List<Project> managedProjects = new ArrayList<>();
+        List<Project> project = postgresqlManager.getProjects(employeeId);
+        System.out.println(employeeId);
+        System.out.println(project);
+        for(int i = 0; i < project.size(); i++) {
+            if(project.get(i).getProjectManager().getId() == employeeId) {
+                managedProjects.add(project.get(i));
+            }
+        }
+        this.projectList = managedProjects;
+        int id = 0;
+        if (!projectList.isEmpty()) {
+            for (Project p : projectList) {
+                projects.getItems().addAll(id + " " + p.getName());
+            }
+            id++;
+        }
     }
 
-    private Project getProjectByName(String projectName) {
-        // Implement logic to get the project by name
-        return new Project();
-    }
-
-    private ArrayList<Employee> getAllEmployees() {
-        // Implement logic to get all employees
-        return new ArrayList<>();
+    @Override
+    public int getEmployeeId() {
+        return employeeId;
     }
 }

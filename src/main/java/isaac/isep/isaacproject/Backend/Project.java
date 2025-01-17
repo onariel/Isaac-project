@@ -31,7 +31,10 @@ public class Project {
         this.budget = budget;
     }
 
-    public Project() {}
+    public Project() {
+        this.employees = new ArrayList<>();
+        this.tasks = new ArrayList<>();
+    }
 
     //Getters and Setters
     public long getId() {

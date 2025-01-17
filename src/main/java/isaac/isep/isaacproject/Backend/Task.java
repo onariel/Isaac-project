@@ -12,19 +12,19 @@ public class Task {
     public int priority;
     public Date dueDate;
     public long status;
-    public ArrayList<Employee> employees;
+    public Employee employee;
     public ArrayList<String> comments;
     public Project project;
     public float budget;
 
     //Constructor
-    public Task(String name, String description, int priority, Date dueDate, Project project, float budget) {
+    public Task(String name, String description, int priority, Date dueDate, Project project, float budget, Employee employee) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
         this.status = 0;
-        this.employees = new ArrayList<>();
+        this.employee = employee;
         this.comments = new ArrayList<>();
         this.project = project;
         this.budget = budget;
@@ -56,10 +56,6 @@ public class Task {
 
     public long getStatus() {
         return status;
-    }
-
-    public ArrayList<Employee> getEmployees() {
-        return employees;
     }
 
     public ArrayList<String> getComments() {
@@ -98,10 +94,6 @@ public class Task {
         this.status = status;
     }
 
-    public void setEmployees(ArrayList<Employee> employees) {
-        this.employees = employees;
-    }
-
     public void setComments(ArrayList<String> comments) {
         this.comments = comments;
     }
@@ -114,17 +106,10 @@ public class Task {
         this.budget = budget;
     }
 
-    public void addEmployee(Employee employee) {
-        this.employees.add(employee);
-    }
-
     public void addComment(String comment) {
         this.comments.add(comment);
     }
 
-    public void removeEmployee(Employee employee) {
-        this.employees.remove(employee);
-    }
 
     public void removeComment(String comment) {
         this.comments.remove(comment);

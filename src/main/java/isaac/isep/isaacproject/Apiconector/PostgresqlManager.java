@@ -2,16 +2,12 @@ package isaac.isep.isaacproject.Apiconector;
 
 
 import isaac.isep.isaacproject.Apiconector.RequestLogin;
-import isaac.isep.isaacproject.Backend.Employee;
-import isaac.isep.isaacproject.Backend.Project;
-import isaac.isep.isaacproject.Backend.Task;
+import isaac.isep.isaacproject.Backend.*;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class PostgresqlManager {
@@ -51,20 +47,19 @@ public class PostgresqlManager {
         return project;
     }
 
-    public Project createTask(String name, String description, int priority, Date dueDate, Project project, float budget) {
+    public void createTask(String name, String description, int priority, Date dueDate, Project project, float budget) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        Task task = new Task();
+        TaskDTO task = new TaskDTO();
         task.setName(name);
         task.setDescription(description);
         task.setPriority(priority);
         task.setDueDate(dueDate);
-        task.setStatus(0);
-        task.setProject(project);
+        Long status = 0L;
+        task.setStatus(status);
         task.setBudget(budget);
-        ResponseEntity<Long> response = restTemplate.postForEntity(BASE_URL + "/Task/create", task, Long.class);
-        project.setId(response.getBody());
-        return project;
+        ResponseEntity<Long> response = restTemplate.postForEntity(BASE_URL + "/Task/" + project.getId() + "/create", task, Long.class);
+        task.setId(Math.toIntExact(response.getBody()));
     }
 
     public Long Login(String email, String password) {
@@ -277,7 +272,21 @@ public class PostgresqlManager {
     }
 
     public List<Project> getProjects(long id) {
-        ResponseEntity<List> response = restTemplate.getForEntity(BASE_URL + "/Project/" + id, List.class);
+        ResponseEntity<List<ProjectDTO>> response = restTemplate.exchange(
+                BASE_URL + "/Project/" + id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ProjectDTO>>() {}
+        );
+        List<Project> projects = new ArrayList<Project>();
+        for (ProjectDTO dto : response.getBody()) {
+            projects.add(dto.projectfromDTO());
+        }
+        return projects;
+    }
+
+    public Employee getEmployee(long id) {
+        ResponseEntity<Employee> response = restTemplate.getForEntity(BASE_URL + "/Employee/" + id, Employee.class);
         return response.getBody();
     }
 }

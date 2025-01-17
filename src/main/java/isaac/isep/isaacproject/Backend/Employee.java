@@ -29,7 +29,9 @@ public class Employee {
         this.projects = new ArrayList<>();
     }
 
-    public Employee() {}
+    public Employee() {
+        this.projects = new ArrayList<>();
+    }
 
     //Getters and Setters
     public long getId() {
@@ -83,8 +85,6 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-                ", password='" + password + '\'' +
-                ", projects=" + projects +
                 '}';
     }
 }

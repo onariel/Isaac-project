@@ -27,31 +27,37 @@ public class LoginPageController {
     public void OnLogin() {
         if (!email.getText().isEmpty() && !password.getText().isEmpty()) {
             PostgresqlManager postgresqlManager = new PostgresqlManager();
-            Integer employeeId = Math.toIntExact(postgresqlManager.Login(email.getText(), password.getText()));
-            System.out.println(employeeId);
-            if (employeeId != null) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Main-Page.fxml"));
-                    Parent root = fxmlLoader.load();
+            if (postgresqlManager.Login(email.getText(), password.getText()) != null) {
+                Integer employeeId = Math.toIntExact(postgresqlManager.Login(email.getText(), password.getText()));
+                System.out.println(employeeId);
+                if (employeeId != null) {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Main-Page.fxml"));
+                        Parent root = fxmlLoader.load();
 
-                    // Get the controller of the main page
-                    MainPageController mainPageController = fxmlLoader.getController();
-                    // Set the employee ID
-                    mainPageController.setEmployeeId(employeeId);
+                        // Get the controller of the main page
+                        MainPageController mainPageController = fxmlLoader.getController();
+                        // Set the employee ID
+                        mainPageController.setEmployeeId(employeeId);
 
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root, 800, 300);
-                    stage.setTitle("Main page");
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root, 800, 300);
+                        stage.setTitle("Main page");
+                        stage.setScene(scene);
+                        stage.show();
+                        Stage stage1 = (Stage) email.getScene().getWindow();
+                        stage1.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    ErrorMessage.setText("Invalid login credentials");
                 }
             } else {
-                ErrorMessage.setText("Invalid login credentials");
+                ErrorMessage.setText("Please enter email and password");
             }
-        } else {
-            ErrorMessage.setText("Please enter email and password");
+        }else{
+            ErrorMessage.setText("The email or password are wrong");
         }
     }
 
@@ -61,7 +67,7 @@ public class LoginPageController {
             FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource("Account-creation-page.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
-            Scene scene = new Scene(root, 800, 300);
+            Scene scene = new Scene(root, 800, 500);
             stage.setTitle("Account creation page");
             stage.setScene(scene);
             stage.show();

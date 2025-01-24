@@ -1,38 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="isaac.isep.isaacproject.Controllers.KanbanViewController"
-            prefHeight="400.0" prefWidth="600.0">
-    <children>
-        <HBox layoutX="20.0" layoutY="20.0" prefWidth="560.0" prefHeight="360.0">
-            <VBox fx:id="toDoVBox" prefWidth="180.0" prefHeight="360.0">
-                <children>
-                    <Label text="To do"/>
-                    <Separator orientation="HORIZONTAL" minHeight="10.0"/>
-                </children>
-            </VBox>
-            <Separator orientation="VERTICAL" minWidth="10.0"/>
-            <VBox fx:id="inProgressVBox" prefWidth="180.0" prefHeight="360.0">
-                <children>
-                    <Label text="In-progress"/>
-                    <Separator orientation="HORIZONTAL" minHeight="10.0"/>
-                </children>
-            </VBox>
-            <Separator orientation="VERTICAL" minWidth="10.0"/>
-            <VBox fx:id="finishedVBox" prefWidth="180.0" prefHeight="360.0">
-                <children>
-                    <Label text="Finished"/>
-                    <Separator orientation="HORIZONTAL" minHeight="10.0"/>
-                </children>
-            </VBox>
-        </HBox>
-    </children>
-</AnchorPane>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="isaac.isep.isaacproject.Controllers.KanbanViewController"
+      prefHeight="600.0" prefWidth="900.0">
+
+    <MenuBar>
+        <Menu text="Projects" fx:id="projectsMenu">
+            <!-- Project tabs will be added here -->
+        </Menu>
+    </MenuBar>
+
+    <TabPane fx:id="projectsTabPane" tabClosingPolicy="UNAVAILABLE">
+        <!-- Tabs for each project will be added here -->
+    </TabPane>
+</VBox>

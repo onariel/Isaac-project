@@ -33,7 +33,33 @@ public class Task {
 
     public Task(){}
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", priority=" + priority +
+                ", dueDate=" + dueDate +
+                ", status=" + status +
+                ", comments=" + comments +
+                ", budget=" + budget +
+                ", employee=" + employee.getName() +
+                '}';
+    }
+
+
     //Getters and Setters
+
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
     public long getId() {
         return id;
     }

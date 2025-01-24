@@ -66,7 +66,7 @@ public class TaskCreationController implements EmployeeIdAware {
                     Employee selectedEmployee = postgresqlManager.getEmployeeByEmail(employeeEmail.getText());
                     float budget = Float.parseFloat(budgetField.getText());
                     Project project = this.projectList.get(Integer.valueOf(projects.getValue().split(" ")[0]));
-                    postgresqlManager.createTask(name,description,priority,dueDate,project,budget);
+                    postgresqlManager.createTask(name,description,priority,dueDate,project,budget,selectedEmployee);
                     Stage stage = (Stage) errorLabel.getScene().getWindow();
                     stage.close();
                 }
@@ -94,8 +94,9 @@ public class TaskCreationController implements EmployeeIdAware {
         if (!projectList.isEmpty()) {
             for (Project p : projectList) {
                 projects.getItems().addAll(id + " " + p.getName());
+                id++;
             }
-            id++;
+
         }
     }
 

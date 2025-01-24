@@ -41,7 +41,7 @@ public class LoginPageController {
                         mainPageController.setEmployeeId(employeeId);
 
                         Stage stage = new Stage();
-                        Scene scene = new Scene(root, 800, 300);
+                        Scene scene = new Scene(root, 500, 400);
                         stage.setTitle("Main page");
                         stage.setScene(scene);
                         stage.show();

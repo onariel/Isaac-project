@@ -42,6 +42,9 @@ public class ProjectDTO {
         project.getEmployees().add(employee);
         employee.getProjects().add(project);
         employee.getProjects().add(project);
+        for(TaskDTO task : tasks) {
+            project.getTasks().add(task.TaskfromDTO());
+        }
 
         return project;
     }

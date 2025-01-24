@@ -70,6 +70,11 @@ public class MainPageController {
         loadPage("ReportGeneration.fxml", employeeId);
     }
 
+    @FXML
+    private void addEmployeeToProject() {
+        loadPage("add-Employee-To-project.fxml", employeeId);
+    }
+
     private void loadPage(String fxmlFile, int employeeId) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(RunApplication.class.getResource(fxmlFile));

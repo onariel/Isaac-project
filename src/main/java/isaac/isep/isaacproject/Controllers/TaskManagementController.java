@@ -1,5 +1,6 @@
 package isaac.isep.isaacproject.Controllers;
 
+import isaac.isep.isaacproject.Backend.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -54,6 +55,12 @@ public class TaskManagementController {
     private Label currentBudgetLabel;
     @FXML
     private TextField budgetField;
+
+    private Task currentTask;
+
+    public void initialize(Task task) {
+        currentTask = task;
+    }
 
     @FXML
     private void saveTaskDetails() {

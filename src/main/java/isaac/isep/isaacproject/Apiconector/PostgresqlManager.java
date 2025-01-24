@@ -46,7 +46,7 @@ public class PostgresqlManager {
         return project;
     }
 
-    public void createTask(String name, String description, int priority, Date dueDate, Project project, float budget) {
+    public void createTask(String name, String description, int priority, Date dueDate, Project project, float budget, Employee employee) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         TaskDTO task = new TaskDTO();
@@ -57,6 +57,7 @@ public class PostgresqlManager {
         Long status = 0L;
         task.setStatus(status);
         task.setBudget(budget);
+        task.setEmployeeId(employee.getId());
         ResponseEntity<Long> response = restTemplate.postForEntity(BASE_URL + "/Task/" + project.getId() + "/create", task, Long.class);
         task.setId(Math.toIntExact(response.getBody()));
     }
@@ -262,11 +263,11 @@ public class PostgresqlManager {
         restTemplate.postForEntity(BASE_URL + "/Task/" + id + "/budget", request, Float.class);
     }
 
-    public boolean addEmployee(long id, String email) {
+    public boolean addEmployeeToProject(long id, String email) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(email, headers);
-        ResponseEntity<Boolean> response  = restTemplate.postForEntity(BASE_URL + "/Employee/" + id + "/add", request, Boolean.class);
+        ResponseEntity<Boolean> response  = restTemplate.postForEntity(BASE_URL + "/Project/" + id + "/add", request, Boolean.class);
         return Boolean.TRUE.equals(response.getBody());
     }
 

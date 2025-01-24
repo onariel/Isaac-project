@@ -1,6 +1,8 @@
 package isaac.isep.isaacproject.Backend;
 
 
+import isaac.isep.isaacproject.Apiconector.PostgresqlManager;
+
 import java.util.Date;
 
 public class TaskDTO {
@@ -18,6 +20,8 @@ public class TaskDTO {
 
     public float budget;
 
+    public long employeeId;
+
     public TaskDTO(int id, String name, String description, int priority, Date dueDate, Long status, float budget) {
         this.id = id;
         this.name = name;
@@ -31,8 +35,30 @@ public class TaskDTO {
     public TaskDTO() {
     }
 
+    public Task TaskfromDTO() {
+        Task task = new Task();
+        PostgresqlManager postgresqlManager = new PostgresqlManager();
+        task.setId(this.id);
+        task.setName(this.name);
+        task.setDescription(this.description);
+        task.setPriority(this.priority);
+        task.setDueDate(this.dueDate);
+        task.setStatus(this.status);
+        task.setBudget(this.budget);
+        task.setEmployee(postgresqlManager.getEmployee(this.employeeId));
+        return task;
+    }
+
     public int getId() {
         return this.id;
+    }
+
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public long getEmployeeId() {
+        return employeeId;
     }
 
     public String getName() {

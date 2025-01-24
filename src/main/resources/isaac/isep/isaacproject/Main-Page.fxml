@@ -6,16 +6,17 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isaac.isep.isaacproject.Controllers.MainPageController">
    <children>
-      <VBox fx:id="vBox" prefHeight="720.0" prefWidth="1280.0">
+      <VBox fx:id="vBox" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
          <children>
-            <Button text="Project Creation" onAction="#goToProjectCreation"/>
-            <Button text="Task Creation" onAction="#goToTaskCreation"/>
-            <Button text="Task Management" onAction="#goToTaskManagement"/>
-            <Button text="Employee Management" onAction="#goToEmployeeManagement"/>
-            <Button text="Project Management" onAction="#goToProjectManagement"/>
-            <Button text="Kanban View" onAction="#goToKanbanView"/>
-            <Button text="Calendar View" onAction="#goToCalendarView"/>
-            <Button text="Generation Report" onAction="#goToGenerationReport"/>
+            <Button onAction="#goToProjectCreation" text="Project Creation" />
+            <Button onAction="#goToTaskCreation" text="Task Creation" />
+            <Button onAction="#goToTaskManagement" text="Task Management" />
+            <Button onAction="#goToEmployeeManagement" text="Employee Management" />
+            <Button onAction="#goToProjectManagement" text="Project Management" />
+            <Button onAction="#goToKanbanView" text="Kanban View" />
+            <Button onAction="#goToCalendarView" text="Calendar View" />
+            <Button onAction="#goToGenerationReport" text="Generation Report" />
+            <Button mnemonicParsing="false" onAction="#addEmployeeToProject" text="Add Employee to project" />
          </children>
       </VBox>
    </children>
